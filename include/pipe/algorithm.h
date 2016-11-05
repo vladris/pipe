@@ -6,3 +6,4 @@
 #include <pipe/algorithm/filter.h>
 #include <pipe/algorithm/map.h>
 
+#include <pipe/algorithm/pipe.h>
