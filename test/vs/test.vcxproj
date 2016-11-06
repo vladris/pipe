@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\accumulate_test.cpp" />
+    <ClCompile Include="..\chaining_test.cpp" />
     <ClCompile Include="..\filter_test.cpp" />
     <ClCompile Include="..\map_test.cpp" />
   </ItemGroup>

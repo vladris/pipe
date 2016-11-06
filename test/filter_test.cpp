@@ -1,4 +1,3 @@
-#include "pipe/core.h"
 #include "pipe/algorithm.h"
 
 #include "pintest.hpp"
