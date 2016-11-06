@@ -27,18 +27,12 @@
     <ClInclude Include="..\pintest.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\zip_test.cpp">
       <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\accumulate_test.cpp">
-      <Filter>Source Files\AlgorithmTests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\chaining_test.cpp">
       <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\drop_test.cpp">
@@ -88,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="..\constant_test.cpp">
       <Filter>Source Files\FunctionalTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\chaining_test.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

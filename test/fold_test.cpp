@@ -1,27 +1,30 @@
 #include "pipe/algorithm.h"
+#include "pipe/generator.h"
 
 #include "pintest.hpp"
-#include "utils.h"
 
 using namespace pipe::algorithm;
+using namespace pipe::generator;
 
 TEST_GROUP(fold_test)
 {
     TEST(fold_zero_items)
     {
-        auto value = generate({}) | fold(std::plus<> {});
+        std::vector<int> in { };
+        auto value = in | to_generator() | fold(std::plus<> {});
         test::assert::equals(0, value);
     }
 
     TEST(fold_one_item)
     {
-        auto value = generate({ 42 }) | fold(std::plus<> {});
+        std::vector<int> in { 42 };
+        auto value = in | to_generator() | fold(std::plus<> {});
         test::assert::equals(42, value);
     }
 
     TEST(fold_multiple_items)
     {
-        auto value = generate({ 1, 2, 3, 4, 5 }) | fold(std::plus<> {});
+        auto value = count() | take_n(6) | fold(std::plus<> {});
         test::assert::equals(15, value);
     }
 };
