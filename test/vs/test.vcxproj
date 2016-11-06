@@ -26,6 +26,7 @@
     <ClCompile Include="..\accumulate_test.cpp" />
     <ClCompile Include="..\chaining_test.cpp" />
     <ClCompile Include="..\custom_generator_test.cpp" />
+    <ClCompile Include="..\drop_test.cpp" />
     <ClCompile Include="..\filter_test.cpp" />
     <ClCompile Include="..\map_test.cpp" />
     <ClCompile Include="..\take_test.cpp" />
