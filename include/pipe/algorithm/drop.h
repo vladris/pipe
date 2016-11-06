@@ -30,7 +30,7 @@ struct drop_while_t
 template <typename Predicate>
 auto drop_while(Predicate pred)
 {
-    return details::drop_while_t<Predicate>{ pred };
+    return details::drop_while_t<Predicate> { pred };
 }
 
 template <typename Predicate>

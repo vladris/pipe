@@ -25,7 +25,7 @@ struct take_while_t
 template <typename Predicate>
 auto take_while(Predicate pred)
 {
-    return details::take_while_t<Predicate>{ pred };
+    return details::take_while_t<Predicate> { pred };
 }
 
 template <typename Predicate>

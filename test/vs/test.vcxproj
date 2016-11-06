@@ -29,6 +29,7 @@
     <ClCompile Include="..\drop_test.cpp" />
     <ClCompile Include="..\filter_test.cpp" />
     <ClCompile Include="..\fold_test.cpp" />
+    <ClCompile Include="..\logical_test.cpp" />
     <ClCompile Include="..\map_test.cpp" />
     <ClCompile Include="..\numeric_test.cpp" />
     <ClCompile Include="..\take_test.cpp" />

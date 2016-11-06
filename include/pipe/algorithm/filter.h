@@ -23,7 +23,7 @@ struct filter_t
 template <typename Predicate>
 auto filter(Predicate pred)
 {
-    return details::filter_t<Predicate>{ pred };
+    return details::filter_t<Predicate> { pred };
 }
 
 }} // namespace pipe::algorithm
