@@ -9,8 +9,8 @@ struct filter_t
 {
     Predicate pred;
 
-    template <typename T>
-    auto operator()(generator_t<T> gen)
+    template <typename Generator>
+    auto operator()(Generator gen) -> Generator
     {
         for (auto&& item : gen)
             if (pred(item))

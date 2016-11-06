@@ -1,4 +1,5 @@
 #pragma once
+#include <type_traits>
 
 namespace pipe { namespace algorithm {
 
@@ -9,8 +10,8 @@ struct map_t
 {
     UnaryOperation op;
 
-    template <typename T>
-    auto operator()(generator_t<T> gen)
+    template <template <typename, typename> typename Generator, typename T, typename Allocator>
+    auto operator()(Generator<T, Allocator> gen) -> Generator<typename std::result_of<UnaryOperation(T&)>::type, Allocator>
     {
         for (auto&& item : gen)
             co_yield op(item);

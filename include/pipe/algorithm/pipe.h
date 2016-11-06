@@ -1,9 +1,11 @@
 #pragma once
+#include <utility>
+#include <pipe/traits.h>
 
 namespace pipe { namespace algorithm {
 
-template <typename T, typename Algorithm>
-auto operator|(generator_t<T> gen, Algorithm algorithm)
+template <typename Generator, typename Algorithm, typename _ = std::enable_if<pipe::is_generator<Generator>::value>::type>
+auto operator|(Generator& gen, Algorithm algorithm)
 {
     return algorithm(std::move(gen));
 }

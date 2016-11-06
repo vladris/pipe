@@ -10,8 +10,8 @@ struct accumulate_t
     const U initial_value;
     BinaryOperation op;
 
-    template <typename T>
-    auto operator()(generator_t<T> gen)
+    template <typename Generator>
+    auto operator()(Generator gen)
     {
         auto acc { initial_value };
 

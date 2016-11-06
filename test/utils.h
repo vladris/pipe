@@ -1,5 +1,5 @@
 #pragma once
-#include <pipe/core.h>
+#include <experimental/generator>
 #include <vector>
 
 inline auto generate(std::vector<int> vec)
