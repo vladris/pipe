@@ -2,7 +2,6 @@
 #include "pipe/generator.h"
 
 #include "pintest.hpp"
-#include "utils.h"
 
 using namespace pipe::generator;
 using namespace pipe::algorithm;

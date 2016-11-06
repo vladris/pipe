@@ -3,7 +3,6 @@
 #include "pipe/traits.h"
 
 #include "pintest.hpp"
-#include "utils.h"
 
 using namespace pipe::algorithm;
 using namespace pipe::generator;
@@ -56,11 +55,11 @@ TEST_GROUP(custom_generator_test)
 
     TEST(zipping_custom_generator)
     {
-        auto result = generate_custom({ 1, 2, 3 }) | zip_with(generate({ 10, 20, 30 }));
+        auto result = generate_custom({ 1, 2, 3 }) | zip_with(std::vector<int> { 10, 20, 30 });
 
         static_assert(std::is_same<custom_gen<std::pair<int, int>>, decltype(result)>::value, "zip should maintain type of lhs generator");
 
-        auto result2 = generate({ 1, 2, 3 }) | zip_with(generate_custom({ 10, 20, 30 }));
+        auto result2 = count<int>() | take_n(3) | zip_with(generate_custom({ 10, 20, 30 }));
 
         static_assert(std::is_same<std::experimental::generator<std::pair<int, int>>, decltype(result2)>::value, "zip should maintain type of lhs generator");
     }

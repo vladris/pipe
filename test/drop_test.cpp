@@ -1,9 +1,11 @@
 #include "pipe/algorithm.h"
+#include "pipe/functional.h"
 #include "pipe/generator.h"
 
 #include "pintest.hpp"
 
 using namespace pipe::algorithm;
+using namespace pipe::functional;
 using namespace pipe::generator;
 
 TEST_GROUP(drop_test)
@@ -11,14 +13,14 @@ TEST_GROUP(drop_test)
     TEST(drop_while_zero_items)
     {
         std::vector<int> in { };
-        auto result = in | to_generator() | drop_while([](auto&) { return true; });
+        auto result = in | to_generator() | drop_while(constant(true));
         std::vector<int> vec(result.begin(), result.end());
         test::assert::equals(0, vec.size());
     }
 
     TEST(drop_while_no_items)
     {
-        auto result = count<int>() | take_n(6) | drop_while([](auto&) { return false; });
+        auto result = count<int>() | take_n(6) | drop_while(constant(false));
         std::vector<int> vec(result.begin(), result.end());
         test::assert::equals(6, vec.size());
     }
@@ -35,21 +37,21 @@ TEST_GROUP(drop_test)
 
     TEST(drop_while_all_items)
     {
-        auto result = count<int>() | take_n(6) | drop_while([](auto& item) { return true; });
+        auto result = count<int>() | take_n(6) | drop_while(constant(true));
         std::vector<int> vec(result.begin(), result.end());
         test::assert::equals(0, vec.size());
     }
 
     TEST(drop_until_zero_items)
     {
-        auto result = std::vector<int> {} | to_generator() | drop_until([](auto&) { return true; });
+        auto result = std::vector<int> {} | to_generator() | drop_until(constant(true));
         std::vector<int> vec(result.begin(), result.end());
         test::assert::equals(0, vec.size());
     }
 
     TEST(drop_until_no_items)
     {
-        auto result = count<int>() | take_n(6) | drop_until([](auto&) { return true; });
+        auto result = count<int>() | take_n(6) | drop_until(constant(true));
         std::vector<int> vec(result.begin(), result.end());
         test::assert::equals(6, vec.size());
     }
@@ -66,7 +68,7 @@ TEST_GROUP(drop_test)
 
     TEST(drop_until_all_items)
     {
-        auto result = count<int>() | take_n(6) | drop_until([](auto& item) { return false; });
+        auto result = count<int>() | take_n(6) | drop_until(constant(false));
         std::vector<int> vec(result.begin(), result.end());
         test::assert::equals(0, vec.size());
     }

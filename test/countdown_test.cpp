@@ -1,7 +1,6 @@
 #include "pipe/functional.h"
 
 #include "pintest.hpp"
-#include "utils.h"
 
 using namespace pipe::functional;
 

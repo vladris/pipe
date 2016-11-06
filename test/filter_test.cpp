@@ -1,16 +1,18 @@
 #include "pipe/algorithm.h"
+#include "pipe/functional.h"
 #include "pipe/generator.h"
 
 #include "pintest.hpp"
 
 using namespace pipe::algorithm;
+using namespace pipe::functional;
 using namespace pipe::generator;
 
 TEST_GROUP(filter_test)
 {
     TEST(filter_zero_items)
     {
-        auto result = std::vector<int> {} | to_generator() | filter([](auto&) { return true; });
+        auto result = std::vector<int> {} | to_generator() | filter(constant(true));
         std::vector<int> vec(result.begin(), result.end());
         test::assert::equals(0, vec.size());
     }
