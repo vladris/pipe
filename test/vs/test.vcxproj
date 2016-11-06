@@ -33,6 +33,7 @@
     <ClCompile Include="..\filter_test.cpp" />
     <ClCompile Include="..\fold_test.cpp" />
     <ClCompile Include="..\for_each_test.cpp" />
+    <ClCompile Include="..\identity_test.cpp" />
     <ClCompile Include="..\logical_test.cpp" />
     <ClCompile Include="..\map_test.cpp" />
     <ClCompile Include="..\negate_test.cpp" />

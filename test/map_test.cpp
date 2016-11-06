@@ -1,9 +1,11 @@
 #include "pipe/algorithm.h"
+#include "pipe/functional.h"
 #include "pipe/generator.h"
 
 #include "pintest.hpp"
 
 using namespace pipe::algorithm;
+using namespace pipe::functional;
 using namespace pipe::generator;
 
 TEST_GROUP(map_test)
@@ -11,7 +13,7 @@ TEST_GROUP(map_test)
     TEST(map_zero_items)
     {
         std::vector<int> in { };
-        auto result = in | to_generator() | map([](auto& item) { return item; });
+        auto result = in | to_generator() | map(identity { });
         std::vector<int> vec(result.begin(), result.end());
         test::assert::equals(0, vec.size());
     }
