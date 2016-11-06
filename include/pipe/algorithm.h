@@ -8,5 +8,6 @@
 #include <pipe/algorithm/map.h>
 #include <pipe/algorithm/numeric.h>
 #include <pipe/algorithm/take.h>
+#include <pipe/algorithm/zip.h>
 
 #include <pipe/algorithm/pipe.h>

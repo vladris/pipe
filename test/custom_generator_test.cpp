@@ -51,4 +51,15 @@ TEST_GROUP(custom_generator_test)
 
         test::assert::equals(12, mapped | accumulate(0, std::plus<> {}));
     }
+
+    TEST(zipping_custom_generator)
+    {
+        auto result = generate_custom({ 1, 2, 3 }) | zip_with(generate({ 10, 20, 30 }));
+
+        static_assert(std::is_same<custom_gen<std::pair<int, int>>, decltype(result)>::value, "Zip should maintain type of lhs generator");
+
+        auto result2 = generate({ 1, 2, 3 }) | zip_with(generate_custom({ 10, 20, 30 }));
+
+        static_assert(std::is_same<std::experimental::generator<std::pair<int, int>>, decltype(result2)>::value, "Zip should maintain type of lhs generator");
+    }
 };

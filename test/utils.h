@@ -2,7 +2,8 @@
 #include <experimental/generator>
 #include <vector>
 
-inline auto generate(std::vector<int> vec)
+template <typename T = int>
+auto generate(std::vector<T> vec)
 {
     for (auto&& item : vec)
         co_yield item;
