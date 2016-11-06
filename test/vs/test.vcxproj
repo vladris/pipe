@@ -27,15 +27,19 @@
     <ClCompile Include="..\chaining_test.cpp" />
     <ClCompile Include="..\countdown_test.cpp" />
     <ClCompile Include="..\counter_test.cpp" />
+    <ClCompile Include="..\count_test.cpp" />
     <ClCompile Include="..\custom_generator_test.cpp" />
     <ClCompile Include="..\drop_test.cpp" />
     <ClCompile Include="..\filter_test.cpp" />
     <ClCompile Include="..\fold_test.cpp" />
+    <ClCompile Include="..\for_each_test.cpp" />
     <ClCompile Include="..\logical_test.cpp" />
     <ClCompile Include="..\map_test.cpp" />
     <ClCompile Include="..\negate_test.cpp" />
     <ClCompile Include="..\numeric_test.cpp" />
+    <ClCompile Include="..\repeat_test.cpp" />
     <ClCompile Include="..\take_test.cpp" />
+    <ClCompile Include="..\to_generator_test.cpp" />
     <ClCompile Include="..\zip_test.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

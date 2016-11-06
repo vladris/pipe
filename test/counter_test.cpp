@@ -19,7 +19,7 @@ TEST_GROUP(counter_test)
 
     TEST(counter_with_initial_value)
     {
-        auto c = counter<uint32_t>(-2);
+        auto c = counter<int32_t>(-2);
 
         test::assert::equals(-2, c());
         test::assert::equals(-1, c());

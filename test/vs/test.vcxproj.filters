@@ -19,6 +19,9 @@
     <Filter Include="Source Files\FunctionalTests">
       <UniqueIdentifier>{9465e172-d2ab-42d7-9cfc-1ccb954855c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GeneratorTests">
+      <UniqueIdentifier>{219885a1-d915-4ded-9fd4-120e9c29f44b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\pintest.hpp">
@@ -36,9 +39,6 @@
       <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\chaining_test.cpp">
-      <Filter>Source Files\AlgorithmTests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\custom_generator_test.cpp">
       <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\drop_test.cpp">
@@ -70,6 +70,21 @@
     </ClCompile>
     <ClCompile Include="..\counter_test.cpp">
       <Filter>Source Files\FunctionalTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\count_test.cpp">
+      <Filter>Source Files\GeneratorTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\repeat_test.cpp">
+      <Filter>Source Files\GeneratorTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\to_generator_test.cpp">
+      <Filter>Source Files\GeneratorTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom_generator_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\for_each_test.cpp">
+      <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -43,21 +43,21 @@ TEST_GROUP(numeric_test)
         test::assert::equals(5, value);
     }
 
-    TEST(count_zero_items)
+    TEST(length_zero_items)
     {
-        auto value = generate({}) | count();
+        auto value = generate({}) | length();
         test::assert::equals(0, value);
     }
 
-    TEST(count_one_item)
+    TEST(length_one_item)
     {
-        auto value = generate({ -42 }) | count();
+        auto value = generate({ -42 }) | length();
         test::assert::equals(1, value);
     }
 
-    TEST(count_multiple_items)
+    TEST(length_multiple_items)
     {
-        auto value = generate({ 1, 2, 3, 4, 5, 6 }) | count();
+        auto value = generate({ 1, 2, 3, 4, 5, 6 }) | length();
         test::assert::equals(6, value);
     }
 };

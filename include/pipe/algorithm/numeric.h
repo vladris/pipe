@@ -16,7 +16,7 @@ inline auto max()
     return fold([](auto& a, auto& b) { return std::max(a, b); });
 }
 
-inline auto count()
+inline auto length()
 {
     return accumulate(size_t(0), pipe::functional::counter(1));
 }
