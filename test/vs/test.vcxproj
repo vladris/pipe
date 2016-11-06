@@ -28,6 +28,7 @@
     <ClCompile Include="..\custom_generator_test.cpp" />
     <ClCompile Include="..\filter_test.cpp" />
     <ClCompile Include="..\map_test.cpp" />
+    <ClCompile Include="..\take_test.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0720F139-DDF2-48C7-B1B8-5C8824840EDF}</ProjectGuid>
