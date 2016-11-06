@@ -1,6 +1,4 @@
 #pragma once
-#include <pipe/algorithm/drop.h>
-#include <pipe/algorithm/numeric.h>
 
 namespace pipe { namespace algorithm {
 
