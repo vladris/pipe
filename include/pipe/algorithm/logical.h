@@ -1,4 +1,5 @@
 #pragma once
+#include <pipe/functional.h>
 
 namespace pipe { namespace algorithm {
 
@@ -43,7 +44,7 @@ auto all(Predicate pred)
 template <typename Predicate>
 auto none(Predicate pred)
 {
-    return all([pred](auto& item) { return !pred(item); });
+    return all(pipe::functional::negate(pred));
 }
 
 template <typename Predicate>

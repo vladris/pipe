@@ -1,4 +1,5 @@
 #pragma once
+#include <pipe/functional.h>
 
 namespace pipe { namespace algorithm {
 
@@ -36,12 +37,12 @@ auto drop_while(Predicate pred)
 template <typename Predicate>
 auto drop_until(Predicate pred)
 {
-    return drop_while([pred](auto& item) { return !pred(item); });
+    return drop_while(pipe::functional::negate(pred));
 }
 
 inline auto drop_n(size_t n)
 {
-    return drop_while([n](auto&) mutable { return n-- > 0; });
+    return drop_while(pipe::functional::countdown(n));
 }
 
 }} // namespace pipe::algorithm

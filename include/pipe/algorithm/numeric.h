@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <pipe/algorithm/accumulate.h>
 #include <pipe/algorithm/fold.h>
+#include <pipe/functional.h>
 
 namespace pipe { namespace algorithm {
 
@@ -17,7 +18,7 @@ inline auto max()
 
 inline auto count()
 {
-    return accumulate(0, [](auto& count, auto&) { return ++count; });
+    return accumulate(size_t(0), pipe::functional::counter(1));
 }
 
 }} // namespace pipe::algorithm
