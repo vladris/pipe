@@ -12,7 +12,11 @@ struct countdown_t
     template <typename ...Args>
     bool operator()(Args&& ...)
     {
-        return n-- > 0;
+        if (n == 0)
+            return false;
+
+        --n;
+        return true;
     }
 };
 

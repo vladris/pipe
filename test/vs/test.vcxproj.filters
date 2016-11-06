@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\AlgorithmTests">
+      <UniqueIdentifier>{36fc1b04-000e-4d4c-ad75-c6e5e779d4b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FunctionalTests">
+      <UniqueIdentifier>{9465e172-d2ab-42d7-9cfc-1ccb954855c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\pintest.hpp">
@@ -23,38 +29,47 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\zip_test.cpp">
+      <Filter>Source Files\AlgorithmTests</Filter>
+    </ClCompile>
     <ClCompile Include="..\accumulate_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\filter_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\map_test.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\chaining_test.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\custom_generator_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\take_test.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\drop_test.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AlgorithmTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\filter_test.cpp">
+      <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\fold_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\numeric_test.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
     <ClCompile Include="..\logical_test.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AlgorithmTests</Filter>
     </ClCompile>
-    <ClCompile Include="..\zip_test.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\map_test.cpp">
+      <Filter>Source Files\AlgorithmTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\numeric_test.cpp">
+      <Filter>Source Files\AlgorithmTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\take_test.cpp">
+      <Filter>Source Files\AlgorithmTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\negate_test.cpp">
+      <Filter>Source Files\FunctionalTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\countdown_test.cpp">
+      <Filter>Source Files\FunctionalTests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\counter_test.cpp">
+      <Filter>Source Files\FunctionalTests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
