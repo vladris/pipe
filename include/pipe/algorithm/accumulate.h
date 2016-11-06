@@ -4,10 +4,10 @@ namespace pipe { namespace algorithm {
 
 namespace details {
 
-template <typename U, typename BinaryOperation>
+template <typename T, typename BinaryOperation>
 struct accumulate_t
 {
-    const U initial_value;
+    const T initial_value;
     BinaryOperation op;
 
     template <typename Generator>
