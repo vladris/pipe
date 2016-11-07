@@ -31,9 +31,13 @@ The library provides the following headers:
 
 ## <a name="generator">generator.h</a>
 
-Generators are declared in `namespace pipe::generator`. 
+Generators are declared in `namespace pipe::generator`. The available generators are:
 
-### count
+* [count](#generatorcount) yielding an infinite counter
+* [repeat](#generatorrepeat) yielding a repeating function call
+* [to_generator](#generatortogenerator) providing convertors from iterator pairs and ranges to generators
+
+### <a name="generatorcount">count</a>
 
 ```c++
 template <typename T = size_t, 
@@ -44,14 +48,14 @@ auto count(T initial_value = T {}) -> Generator<T, Allocator>;
 
 `count` provides an infinite counter over the given type `T` (default is `size_t`) starting from the given initial value (default is `T { }`). Subsequent values are produced by incrementing the counter. 
 
-Example:
+**Example:**
 
 ```c++
 std::vector<int> out { }
 count<int>(-5) | take_n(5) | collect(std::back_inserter(out)); // out will contain { -5, -4, -3, -2, -1 }
 ```
 
-### repeat
+### <a name="generatorrepeat">repeat</a>
 
 ```c++
 template <template <typename, typename> typename Generator = std::experimental::generator,
@@ -60,14 +64,15 @@ auto repeat(Func func) -> Generator<typename std::result_of<Func()>::type, Alloc
 ```
 
 `repeat` infinitely calls the given function `func` and yields its return value.
-Example:
+
+**Example:**
 
 ```c++
 std::vector<int> out { }
 repeat(constant(42)) | take_n(5) | collect(std::back_inserter(out)); // out will contain { 42, 42, 42, 42, 42 }
 ```
 
-### to_generator
+### <a name="generatortogenerator">to_generator</a>
 
 ```c++
 template <template <typename, typename> typename Generator = std::experimental::generator, 
@@ -87,7 +92,9 @@ The `to_generator` family of functions create generators from input ranges.
 
 The first version takes a `begin` and an `end` input iterators and yields each element.
 The second version takes a `Range` type on which it expects `begin()` and `end()` methods returning iterators and a declared `Range::value_type`. It iterates over the range and yields each element.
-The third version returns an internal type which can be used on the right hand side of `operator|` applied to a range, for example:
+The third version returns an internal type which can be used on the right hand side of `operator|` applied to a range.
+
+**Example:**
 
 ```c++
 std::vector<int> in { 1, 2, 3 };
