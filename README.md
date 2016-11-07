@@ -40,10 +40,16 @@ template <typename T = size_t,
           template <typename, typename> typename Generator = std::experimental::generator, 
           typename Allocator = std::allocator<char>>
 auto count(T initial_value = T {}) -> Generator<T, Allocator>;
-}}
 ```
 
-`count` provides an infinite counter over the given type `T` (default is `size_t`) starting from the given initial value (default is `T { }`). Subsequent values are produced by incrementing the counter.
+`count` provides an infinite counter over the given type `T` (default is `size_t`) starting from the given initial value (default is `T { }`). Subsequent values are produced by incrementing the counter. 
+
+Example:
+
+```c++
+std::vector<int> out { }
+count<int>(-5) | take_n(5) | collect(std::back_inserter(out)); // out will contain { -5, -4, -3, -2, -1 }
+```
 
 ### repeat
 
@@ -54,6 +60,12 @@ auto repeat(Func func) -> Generator<typename std::result_of<Func()>::type, Alloc
 ```
 
 `repeat` infinitely calls the given function `func` and yields its return value.
+Example:
+
+```c++
+std::vector<int> out { }
+repeat(constant(42)) | take_n(5) | collect(std::back_inserter(out)); // out will contain { 42, 42, 42, 42, 42 }
+```
 
 ### to_generator
 
@@ -87,14 +99,23 @@ auto gen = in | to_generator(); // `gen` is a generator over `in` and yields its
 
 TBA
 
+---
+
 ## <a name="algorithm">algorithm.h</a>
 
 TBA
+
+---
 
 ## <a name="traits">traits.h</a>
 
 TBA
 
+---
+
 ## <a name="customgenerators">Using custom generators</a>
 
 TBA
+
+---
+
