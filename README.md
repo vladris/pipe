@@ -59,3 +59,7 @@ The library has the following public headers:
     * [to_generator](https://github.com/vladris/pipe/wiki/to_generator)
 * [traits.h](https://github.com/vladris/pipe/wiki/traits.h) providing type traits used by the library:
     * [is_generator](https://github.com/vladris/pipe/wiki/is_generator)
+    
+# Examples
+
+Check out the unit tests under the `test` directory of this project for some working sample uses. Get [pintest](https://github.com/vladris/pintest/) to run them.
