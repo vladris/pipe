@@ -17,3 +17,22 @@ git clone https://github.com/vladris/pipe
 ```
 
 Add the `include` directory to the compiler include path. Using VS 2015 Update 3, make sure to add the `/await` flag to the compiler to enable experimental coroutine support. Other compliers are not yet supported.
+
+# Pipe library
+
+The library provides the following headers:
+
+* [generator.h](#generator_h) providing functions to create generators
+* [functional.h](#functional_h) providing a set of useful functors
+* [algorithm.h](#algorithm_h) providing algorithms that work on generators
+* [traits.h](#traits_h) providing type traits used by the library - see [using custom generators](#custom_generators)
+
+## <a name="generator_h">generator.h</a>
+
+## <a name="functional_h">functional.h</a>
+
+## <a name="algorithm_h">algorithm.h</a>
+
+## <a name="tratis_h">traits.h</a>
+
+## <a name="custom_generators">Using custom generators</a>
