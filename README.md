@@ -26,6 +26,34 @@ Add the `include` directory to the compiler include path. Using VS 2015 Update 3
 The library has the following public headers:
 
 * [algorithm.h](https://github.com/vladris/pipe/wiki/algorithm.h) providing algorithms that work on generators
+    * [accumulate](https://github.com/vladris/pipe/wiki/accumulate)
+    * [all](https://github.com/vladris/pipe/wiki/all)
+    * [collect](https://github.com/vladris/pipe/wiki/collect)
+    * [drop_n](https://github.com/vladris/pipe/wiki/drop_n)
+    * [drop_until](https://github.com/vladris/pipe/wiki/drop_until)
+    * [drop_while](https://github.com/vladris/pipe/wiki/drop_while)
+    * [filter](https://github.com/vladris/pipe/wiki/filter)
+    * [for_each](https://github.com/vladris/pipe/wiki/for_each)
+    * [fold](https://github.com/vladris/pipe/wiki/fold)
+    * [length](https://github.com/vladris/pipe/wiki/length)
+    * [map](https://github.com/vladris/pipe/wiki/map)
+    * [max](https://github.com/vladris/pipe/wiki/max)
+    * [min](https://github.com/vladris/pipe/wiki/min)
+    * [none](https://github.com/vladris/pipe/wiki/none)
+    * [some](https://github.com/vladris/pipe/wiki/some)
+    * [take_n](https://github.com/vladris/pipe/wiki/take_n)
+    * [take_until](https://github.com/vladris/pipe/wiki/take_until)
+    * [take_while](https://github.com/vladris/pipe/wiki/take_while)
+    * [zip_with](https://github.com/vladris/pipe/wiki/zip_with)
 * [functional.h](https://github.com/vladris/pipe/wiki/functional.h) providing a set of useful functors
+    * [constant](https://github.com/vladris/pipe/wiki/constant)
+    * [countdown](https://github.com/vladris/pipe/wiki/countdown)
+    * [counter](https://github.com/vladris/pipe/wiki/counter)
+    * [identity](https://github.com/vladris/pipe/wiki/identity)
+    * [negate](https://github.com/vladris/pipe/wiki/negate)
 * [generator.h](https://github.com/vladris/pipe/wiki/generator.h) providing functions to create generators
+    * [count](https://github.com/vladris/pipe/wiki/count)
+    * [repeat](https://github.com/vladris/pipe/wiki/repeat)
+    * [to_generator](https://github.com/vladris/pipe/wiki/to_generator)
 * [traits.h](https://github.com/vladris/pipe/wiki/traits.h) providing type traits used by the library
+    * [is_generator](https://github.com/vladris/pipe/wiki/is_generator)
