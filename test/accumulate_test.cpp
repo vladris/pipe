@@ -12,6 +12,7 @@ TEST_GROUP(accumulate_test)
     {
         std::vector<int> in { };
         auto value = in | to_generator() | accumulate(-1, std::plus<> {});
+
         test::assert::equals(-1, value);
     }
 
@@ -19,12 +20,14 @@ TEST_GROUP(accumulate_test)
     {
         std::vector<int> in { 42 };
         auto value = in | to_generator() | accumulate(0, std::plus<> {});
+
         test::assert::equals(42, value);
     }
 
     TEST(accumualte_multiple_items)
     {
         auto value = count() | take_n(6) | accumulate(size_t { }, std::plus<> {});
+
         test::assert::equals(15, value);
     }
 };

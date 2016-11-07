@@ -12,6 +12,7 @@ TEST_GROUP(to_generator_test)
     {
         std::vector<int> in = { 1, 2, 3, 4, 5 };
         auto result = to_generator(in) | length();
+
         test::assert::equals(5, result);
     }
 
@@ -19,12 +20,14 @@ TEST_GROUP(to_generator_test)
     {
         std::vector<int> in = { 1, 2, 3, 4, 5 };
         auto result = to_generator(in.begin(), in.end()) | length();
+
         test::assert::equals(5, result);
     }
 
     TEST(to_generator_with_pipe)
     {
         std::vector<int> in = { 1, 2, 3, 4, 5 };
+
         auto result = in | to_generator() | length();
         test::assert::equals(5, result);
     }

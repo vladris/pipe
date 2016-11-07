@@ -89,5 +89,8 @@
     <ClCompile Include="..\identity_test.cpp">
       <Filter>Source Files\FunctionalTests</Filter>
     </ClCompile>
+    <ClCompile Include="..\collect_test.cpp">
+      <Filter>Source Files\AlgorithmTests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

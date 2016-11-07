@@ -12,6 +12,7 @@ TEST_GROUP(for_each_test)
     {
         int sum = 0;
         count(1) | take_n(5) | for_each([&sum](auto& i) { sum += i; });
+
         test::assert::equals(15, sum);
     }
 };

@@ -9,6 +9,7 @@ TEST_GROUP(identity_test)
     TEST(identity_predicate)
     {
         identity pred { };
+
         test::assert::equals(42, pred(42));
         test::assert::equals(0, pred(0));
     }
