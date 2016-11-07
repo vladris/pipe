@@ -11,6 +11,8 @@ auto sum_of_squares = count(1)            // start counting from 1
 
 The library requires coroutines (see the [Coroutines Techincal Specification](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0057r4.pdf)) currently available in VS 2015 Update 3 with the `/await` compiler option.
 
+See [this blog post](http://vladris.com/blog/2016/10/09/composable-generators.html) for ways to compose generators and the reason pipes are the way to go. 
+
 # Getting Started
 
 Pipe is a header only library. Get it from this repository:
