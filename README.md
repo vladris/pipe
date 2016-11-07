@@ -68,7 +68,7 @@ auto repeat(Func func) -> Generator<typename std::result_of<Func()>::type, Alloc
 **Example:**
 
 ```c++
-std::vector<int> out { }
+std::vector<int> out { };
 repeat(constant(42)) | take_n(5) | collect(std::back_inserter(out)); // out will contain { 42, 42, 42, 42, 42 }
 ```
 
@@ -104,7 +104,90 @@ auto gen = in | to_generator(); // `gen` is a generator over `in` and yields its
 
 ## <a name="functional">functional.h</a>
 
-TBA
+Functional helpers are declared in `namespace pipe::functional`. The available functors are:
+
+* [constant](#functionalconstant) creates a functor that returns the same value regardless of the arguments it is called with
+* [countdown](#functionalcountdown) creates a functor that returns `true` `n` times then `false` regardless of the arguments it is called with
+* [counter](#functionalcounter) creates a functor that returns an ever-increasing value regardless of the arguments it is called with
+* [identity](#functionalidentity) creates a functor that returns the argument it is called with
+* [negate](#functionalnegate) creates a functor wrapping a predicate and returns the negation of invoking the wrapped predicate 
+
+### <a name="functionalconstant">constant</a>
+
+```c++
+template <typename T>
+auto constant(T value);
+```
+
+Returns a functor which returns `value` regardless of the arguments it is called with.
+
+**Example:**
+
+```c++
+std::vector<int> out { };
+repeat(constant(42)) | take_n(5) | collect(std::back_inserter(out)); // out will contain { 42, 42, 42, 42, 42 }
+```
+### <a name="functionalcountdown">countdown</a>
+
+```c++
+template <typename T = size_t>
+auto countdown(T initial_value);
+```
+
+Returns a functor which returns `true` for the first `initial_value` calls, then `false`.
+
+**Example:**
+
+```c++
+std::vector<int> out { };
+repeat(constant(42)) | take_while(counter(5)) | collect(std::back_inserter(out)); // out will contain { 42, 42, 42, 42, 42 }
+```
+
+### <a name="functionalcounter">counter</a>
+
+```c++
+template <typename T = size_t>
+auto counter(T initial_value = T {});
+```
+
+Returns a functor which returns and post-increments `initial_value` of type `T` (default `size_t`) on each call.
+
+**Example:**
+
+```c++
+std::vector<int> out { };
+repeat(counter(1)) | take_n(5) | collect(std::back_inserter(out)); // out will contain { 1, 2, 3, 4, 5 }
+```
+
+### <a name="functionalidentity">identity</a>
+
+```c++
+struct identity;
+```
+
+Represents a functor which accepts one argument and returns it.
+
+**Example:**
+
+```c++
+identity id { };
+int out = id(42); // out is 42
+```
+
+### <a name="functionalnegate">negate</a>
+
+```c++
+template <typename Predicate>
+auto negate(Predicate pred);
+```
+
+Returns a functor wrapping the given predicate. Invokes the wrapped predicate when called and negates its return value.
+
+**Example:**
+
+```c++
+bool out = negate(constant(true))(); // out is false
+```
 
 ---
 
