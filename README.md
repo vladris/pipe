@@ -193,13 +193,30 @@ bool out = negate(constant(true))(); // out is false
 
 ## <a name="algorithm">algorithm.h</a>
 
-TBA
+* accumulate
+* all
+* collect
+* drop_n, drop_until, drop_while
+* filter
+* for_each
+* fold
+* length
+* map
+* max
+* min
+* none
+* some
+* take_n, take_until, take_while
+* zip_with
 
 ---
 
 ## <a name="traits">traits.h</a>
 
-TBA
+```c++
+template <typename T>
+struct is_generator;
+```
 
 ---
 
