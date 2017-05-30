@@ -10,10 +10,26 @@ auto map(Generator<T, Allocator> gen, UnaryOperation op) -> Generator<typename s
 		co_yield op(item);
 }
 
+namespace details {
+
+template <typename UnaryOperation>
+struct map_t
+{
+    UnaryOperation op;
+
+    template <typename Generator>
+    auto operator()(Generator gen)
+	{
+		return map(std::move(gen), op);
+    }
+};
+
+} // namespace details
+
 template <typename UnaryOperation>
 auto map(UnaryOperation op)
 {
-	return [=](auto gen) { return map(std::move(gen), op); };
+    return details::map_t<UnaryOperation> { op };
 }
 
 }} // namespace pipe::algorithm

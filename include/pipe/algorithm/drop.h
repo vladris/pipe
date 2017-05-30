@@ -18,10 +18,26 @@ auto drop_while(Generator gen, Predicate pred) -> Generator
 	}
 }
 
+namespace details {
+
+template <typename Predicate>
+struct drop_while_t
+{
+    Predicate pred;
+
+    template <typename Generator>
+    auto operator()(Generator gen)
+    {
+		return drop_while(std::move(gen), pred);
+    }
+};
+
+} // namespace details
+
 template <typename Predicate>
 auto drop_while(Predicate pred)
 {
-	return [=](auto gen) { return drop_while(std::move(gen), pred); };
+    return details::drop_while_t<Predicate> { pred };
 }
 
 template <typename Predicate>

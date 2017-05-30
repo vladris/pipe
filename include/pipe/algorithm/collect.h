@@ -9,10 +9,26 @@ void collect(Generator gen, OutputIterator it)
 		*it++ = item;
 }
 
+namespace details {
+
+template <typename OutputIterator>
+struct collect_t
+{
+    OutputIterator it;
+
+    template <typename Generator>
+    void operator()(Generator gen)
+    {
+		collect(std::move(gen), it);
+    }
+};
+
+} // namespace details
+
 template <typename OutputIterator>
 auto collect(OutputIterator it)
 {
-	return [=](auto gen) { return collect(std::move(gen), it); };
+    return details::collect_t<OutputIterator> { it };
 }
 
 }} // namespace pipe::algorithm
