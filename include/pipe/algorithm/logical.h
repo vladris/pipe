@@ -13,26 +13,10 @@ auto all(Generator gen, Predicate pred)
 	return true;
 }
 
-namespace details {
-
-template <typename Predicate>
-struct all_t
-{
-    Predicate pred;
-
-    template <typename Generator>
-    auto operator()(Generator gen)
-    {
-		return all(std::move(gen), pred);
-    }
-};
-
-} // namespace details
-
 template <typename Predicate>
 auto all(Predicate pred)
 {
-    return details::all_t<Predicate> { pred };
+	return [=](auto gen) { return all(std::move(gen), pred); };
 }
 
 template <typename Predicate>

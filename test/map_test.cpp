@@ -15,7 +15,7 @@ TEST_GROUP(map_test)
     TEST(map_zero_items)
     {
         std::vector<int> out { };
-        std::vector<int> { } | to_generator() | map(identity { }) | collect(std::back_inserter(out));
+        std::vector<int> { } | to_generator() | map(identity()) | collect(std::back_inserter(out));
 
         test::assert::equals(0, out.size());
     }

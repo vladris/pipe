@@ -13,26 +13,10 @@ auto take_while(Generator gen, Predicate pred) -> Generator
 			return;
 }
 
-namespace details {
-
-template <typename Predicate>
-struct take_while_t
-{
-    Predicate pred;
-
-    template <typename Generator>
-    auto operator()(Generator gen) -> Generator
-    {
-		return take_while(std::move(gen), pred);
-    }
-};
-
-} // namespace details
-
 template <typename Predicate>
 auto take_while(Predicate pred)
 {
-    return details::take_while_t<Predicate> { pred };
+	return [=](auto gen) { return take_while(std::move(gen), pred); };
 }
 
 template <typename Predicate>

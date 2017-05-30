@@ -2,13 +2,9 @@
 
 namespace pipe { namespace functional {
 
-struct identity
+inline auto identity()
 {
-    template <typename T>
-    auto operator()(T&& arg)
-    {
-        return arg;
-    }
+	return [](auto&& arg) { return arg; };
 };
 
 }} // namespace pipe::functional
