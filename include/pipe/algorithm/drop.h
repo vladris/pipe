@@ -1,4 +1,5 @@
 #pragma once
+#include <pipe/algorithm/algorithm.h>
 #include <pipe/functional.h>
 
 namespace pipe { namespace algorithm {
@@ -18,26 +19,10 @@ auto drop_while(Generator gen, Predicate pred) -> Generator
 	}
 }
 
-namespace details {
-
-template <typename Predicate>
-struct drop_while_t
-{
-    Predicate pred;
-
-    template <typename Generator>
-    auto operator()(Generator gen)
-    {
-		return drop_while(std::move(gen), pred);
-    }
-};
-
-} // namespace details
-
 template <typename Predicate>
 auto drop_while(Predicate pred)
 {
-    return details::drop_while_t<Predicate> { pred };
+	return details::algorithm([=](auto gen) { return drop_while(std::move(gen), pred); });
 }
 
 template <typename Predicate>

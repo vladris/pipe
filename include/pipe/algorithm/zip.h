@@ -1,5 +1,6 @@
 #pragma once
 #include <utility>
+#include <pipe/algorithm/algorithm.h>
 
 namespace pipe { namespace algorithm {
 
@@ -12,26 +13,10 @@ auto zip(Generator<T, Allocator> gen1, Generator2<U, Allocator2> gen2) -> Genera
 		co_yield std::make_pair(*it1, *it2);
 }
 
-namespace details {
-
-template <typename Generator>
-struct zip_with_t
-{
-	Generator gen1;
-
-	template <typename Generator>
-	auto operator()(Generator gen2)
-	{
-		return zip(std::move(gen2), std::move(gen1));
-	}
-};
-
-} // namespace details
-
 template <typename Generator>
 auto zip_with(Generator gen)
 {
-    return details::zip_with_t<Generator> { std::move(gen) };
+	return details::algorithm([gen2 = std::move(gen)](auto gen) mutable { return zip(std::move(gen), std::move(gen2)); });
 }
 
 }} // namespace pipe::algorithm

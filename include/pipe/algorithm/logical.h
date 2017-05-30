@@ -1,4 +1,5 @@
 #pragma once
+#include <pipe/algorithm/algorithm.h>
 #include <pipe/functional.h>
 
 namespace pipe { namespace algorithm {
@@ -13,26 +14,20 @@ auto all(Generator gen, Predicate pred)
 	return true;
 }
 
-namespace details {
-
-template <typename Predicate>
-struct all_t
+template <typename Generator, typename Predicate>
+auto some(Generator gen, Predicate pred)
 {
-    Predicate pred;
+	for (auto&& item : gen)
+		if (pred(item))
+			return true;
 
-    template <typename Generator>
-    auto operator()(Generator gen)
-    {
-		return all(std::move(gen), pred);
-    }
-};
-
-} // namespace details
+	return false;
+}
 
 template <typename Predicate>
 auto all(Predicate pred)
 {
-    return details::all_t<Predicate> { pred };
+	return details::algorithm([=](auto gen) { return all(std::move(gen), pred); });
 }
 
 template <typename Predicate>
@@ -44,7 +39,7 @@ auto none(Predicate pred)
 template <typename Predicate>
 auto some(Predicate pred)
 {
-	return pipe::functional::negate(none(pred));
+	return details::algorithm([=](auto gen) { return some(std::move(gen), pred); });
 }
 
 }} // namespace pipe::algorithm

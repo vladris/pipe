@@ -1,7 +1,7 @@
 #pragma once
+#include <pipe/algorithm/algorithm.h>
 
 namespace pipe { namespace algorithm {
-
 
 template <typename Generator, typename Predicate>
 auto filter(Generator gen, Predicate pred) -> Generator
@@ -11,27 +11,10 @@ auto filter(Generator gen, Predicate pred) -> Generator
 			co_yield item;
 }
 
-
-namespace details {
-
-template <typename Predicate>
-struct filter_t
-{
-    Predicate pred;
-
-    template <typename Generator>
-    auto operator()(Generator gen) -> Generator
-    {
-		return filter(std::move(gen), pred);
-    }
-};
-
-} // namespace details
-
 template <typename Predicate>
 auto filter(Predicate pred)
 {
-    return details::filter_t<Predicate> { pred };
+	return details::algorithm([=](auto gen) { return filter(std::move(gen), pred); });
 }
 
 }} // namespace pipe::algorithm
