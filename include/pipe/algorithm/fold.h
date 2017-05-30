@@ -3,6 +3,17 @@
 
 namespace pipe { namespace algorithm {
 
+template <template <typename, typename> typename Generator, typename T, typename Allocator, typename BinaryOperation>
+auto fold(Generator<T, Allocator> gen, BinaryOperation op) -> T
+{
+	auto it = gen.begin();
+
+	if (it == gen.end())
+		return {};
+
+	return gen | accumulate(*it, op);
+}
+
 namespace details {
 
 template <typename BinaryOperation>
@@ -10,15 +21,10 @@ struct fold_t
 {
     BinaryOperation op;
 
-    template <template <typename, typename> typename Generator, typename T, typename Allocator>
-    auto operator()(Generator<T, Allocator> gen) -> T
+    template <typename Generator>
+    auto operator()(Generator gen)
     {
-        auto it = gen.begin();
-
-        if (it == gen.end())
-            return {};
-
-        return gen | accumulate(*it, op);
+		return fold(std::move(gen), op);
     }
 };
 

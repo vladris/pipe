@@ -3,6 +3,13 @@
 
 namespace pipe { namespace algorithm {
 
+template <template <typename, typename> typename Generator, typename T, typename Allocator, typename UnaryOperation>
+auto map(Generator<T, Allocator> gen, UnaryOperation op) -> Generator<typename std::result_of<UnaryOperation(T&)>::type, Allocator>
+{
+	for (auto&& item : gen)
+		co_yield op(item);
+}
+
 namespace details {
 
 template <typename UnaryOperation>
@@ -10,11 +17,10 @@ struct map_t
 {
     UnaryOperation op;
 
-    template <template <typename, typename> typename Generator, typename T, typename Allocator>
-    auto operator()(Generator<T, Allocator> gen) -> Generator<typename std::result_of<UnaryOperation(T&)>::type, Allocator>
-    {
-        for (auto&& item : gen)
-            co_yield op(item);
+    template <typename Generator>
+    auto operator()(Generator gen)
+	{
+		return map(std::move(gen), op);
     }
 };
 

@@ -2,6 +2,16 @@
 
 namespace pipe { namespace algorithm {
 
+
+template <typename Generator, typename Predicate>
+auto filter(Generator gen, Predicate pred) -> Generator
+{
+	for (auto&& item : gen)
+		if (pred(item))
+			co_yield item;
+}
+
+
 namespace details {
 
 template <typename Predicate>
@@ -12,9 +22,7 @@ struct filter_t
     template <typename Generator>
     auto operator()(Generator gen) -> Generator
     {
-        for (auto&& item : gen)
-            if (pred(item))
-                co_yield item;
+		return filter(std::move(gen), pred);
     }
 };
 

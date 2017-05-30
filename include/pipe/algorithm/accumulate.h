@@ -2,6 +2,17 @@
 
 namespace pipe { namespace algorithm {
 
+template <typename Generator, typename T, typename BinaryOperation>
+auto accumulate(Generator gen, const T& initial_value, BinaryOperation op)
+{
+	auto acc{ initial_value };
+
+	for (auto&& item : gen)
+		acc = op(acc, item);
+
+	return acc;
+}
+
 namespace details {
 
 template <typename T, typename BinaryOperation>
@@ -13,12 +24,7 @@ struct accumulate_t
     template <typename Generator>
     auto operator()(Generator gen)
     {
-        auto acc { initial_value };
-
-        for (auto&& item : gen)
-            acc = op(acc, item);
-
-        return acc;
+        return accumulate(std::move(gen), initial_value, op);
     }
 };
 

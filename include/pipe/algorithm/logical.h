@@ -3,6 +3,16 @@
 
 namespace pipe { namespace algorithm {
 
+template <typename Generator, typename Predicate>
+auto all(Generator gen, Predicate pred)
+{
+	for (auto&& item : gen)
+		if (!pred(item))
+			return false;
+
+	return true;
+}
+
 namespace details {
 
 template <typename Predicate>
@@ -13,23 +23,7 @@ struct all_t
     template <typename Generator>
     auto operator()(Generator gen)
     {
-        for (auto&& item : gen)
-            if (!pred(item))
-                return false;
-
-        return true;
-    }
-};
-
-template <typename Predicate>
-struct some_t
-{
-    Predicate pred;
-
-    template <typename Generator>
-    auto operator()(Generator gen)
-    {
-        return !(gen | none(pred));
+		return all(std::move(gen), pred);
     }
 };
 
@@ -50,7 +44,7 @@ auto none(Predicate pred)
 template <typename Predicate>
 auto some(Predicate pred)
 {
-    return details::some_t<Predicate> { pred };
+	return pipe::functional::negate(none(pred));
 }
 
 }} // namespace pipe::algorithm

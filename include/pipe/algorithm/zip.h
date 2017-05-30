@@ -3,29 +3,35 @@
 
 namespace pipe { namespace algorithm {
 
+template <template <typename, typename> typename Generator, typename T, typename Allocator, template <typename, typename> typename Generator2, typename U, typename Allocator2>
+auto zip(Generator<T, Allocator> gen1, Generator2<U, Allocator2> gen2) -> Generator<std::pair<T, U>, Allocator>
+{
+	auto it1 = gen1.begin();
+	auto it2 = gen2.begin();
+	for (; it1 != gen1.end() && it2 != gen2.end(); ++it1, ++it2)
+		co_yield std::make_pair(*it1, *it2);
+}
+
 namespace details {
 
-template <template <typename, typename> typename Generator, typename U, typename Allocator>
+template <typename Generator>
 struct zip_with_t
 {
-    Generator<U, Allocator> gen1;
+	Generator gen1;
 
-    template <template <typename, typename> typename Generator, typename T, typename Allocator>
-    auto operator()(Generator<T, Allocator> gen2) -> Generator<std::pair<T, U>, Allocator>
-    {
-        auto it1 = gen2.begin();
-        auto it2 = gen1.begin();
-        for (; it1 != gen2.end() && it2 != gen1.end(); ++it1, ++it2)
-            co_yield std::make_pair(*it1, *it2);
-    }
+	template <typename Generator>
+	auto operator()(Generator gen2)
+	{
+		return zip(std::move(gen2), std::move(gen1));
+	}
 };
 
 } // namespace details
 
-template <template <typename, typename> typename Generator, typename T, typename Allocator>
-auto zip_with(Generator<T, Allocator> gen)
+template <typename Generator>
+auto zip_with(Generator gen)
 {
-    return details::zip_with_t<Generator, T, Allocator> { std::move(gen) };
+    return details::zip_with_t<Generator> { std::move(gen) };
 }
 
 }} // namespace pipe::algorithm

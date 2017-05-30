@@ -2,6 +2,13 @@
 
 namespace pipe { namespace algorithm {
 
+template <typename Generator, typename OutputIterator>
+void collect(Generator gen, OutputIterator it)
+{
+	for (auto&& item : gen)
+		*it++ = item;
+}
+
 namespace details {
 
 template <typename OutputIterator>
@@ -12,8 +19,7 @@ struct collect_t
     template <typename Generator>
     void operator()(Generator gen)
     {
-        for (auto&& item : gen)
-            *it++ = item;
+		collect(std::move(gen), it);
     }
 };
 

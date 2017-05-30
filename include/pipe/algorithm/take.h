@@ -3,6 +3,16 @@
 
 namespace pipe { namespace algorithm {
 
+template <typename Generator, typename Predicate>
+auto take_while(Generator gen, Predicate pred) -> Generator
+{
+	for (auto&& item : gen)
+		if (pred(item))
+			co_yield item;
+		else
+			return;
+}
+
 namespace details {
 
 template <typename Predicate>
@@ -13,11 +23,7 @@ struct take_while_t
     template <typename Generator>
     auto operator()(Generator gen) -> Generator
     {
-        for (auto&& item : gen)
-            if (pred(item))
-                co_yield item;
-            else
-                return;
+		return take_while(std::move(gen), pred);
     }
 };
 

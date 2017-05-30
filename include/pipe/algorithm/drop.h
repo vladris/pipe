@@ -3,6 +3,21 @@
 
 namespace pipe { namespace algorithm {
 
+template <typename Generator, typename Predicate>
+auto drop_while(Generator gen, Predicate pred) -> Generator
+{
+	bool drop = true;
+
+	for (auto&& item : gen)
+	{
+		if (drop)
+			if (drop = pred(item))
+				continue;
+
+		co_yield item;		
+	}
+}
+
 namespace details {
 
 template <typename Predicate>
@@ -11,18 +26,9 @@ struct drop_while_t
     Predicate pred;
 
     template <typename Generator>
-    auto operator()(Generator gen) -> Generator
+    auto operator()(Generator gen)
     {
-        bool drop = true;
-
-        for (auto&& item : gen)
-        {
-            if (drop)
-                if (drop = pred(item))
-                    continue;
-
-            co_yield item;
-        }
+		return drop_while(std::move(gen), pred);
     }
 };
 
