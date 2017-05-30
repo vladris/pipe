@@ -11,14 +11,14 @@ struct fold_t
     BinaryOperation op;
 
     template <template <typename, typename> typename Generator, typename T, typename Allocator>
-    static auto apply(Generator<T, Allocator> gen, fold_t algorithm) -> T
+    auto operator()(Generator<T, Allocator> gen) -> T
     {
         auto it = gen.begin();
 
         if (it == gen.end())
             return {};
 
-        return gen | accumulate(*it, algorithm.op);
+        return gen | accumulate(*it, op);
     }
 };
 

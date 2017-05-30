@@ -10,10 +10,10 @@ struct for_each_t
     UnaryFunction func;
 
     template <typename Generator>
-    static void apply(Generator gen, for_each_t algorithm)
+    void operator()(Generator gen)
     {
         for (auto&& item : gen)
-            algorithm.func(item);
+            func(item);
     }
 };
 

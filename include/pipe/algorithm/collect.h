@@ -10,10 +10,10 @@ struct collect_t
     OutputIterator it;
 
     template <typename Generator>
-    static void apply(Generator gen, collect_t algorithm)
+    void operator()(Generator gen)
     {
         for (auto&& item : gen)
-            *algorithm.it++ = item;
+            *it++ = item;
     }
 };
 

@@ -11,12 +11,12 @@ struct accumulate_t
     BinaryOperation op;
 
     template <typename Generator>
-    static auto apply(Generator gen, accumulate_t algorithm)
+    auto operator()(Generator gen)
     {
-        auto acc { algorithm.initial_value };
+        auto acc { initial_value };
 
         for (auto&& item : gen)
-            acc = algorithm.op(acc, item);
+            acc = op(acc, item);
 
         return acc;
     }

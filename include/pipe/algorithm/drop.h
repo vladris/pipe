@@ -11,14 +11,14 @@ struct drop_while_t
     Predicate pred;
 
     template <typename Generator>
-    static auto apply(Generator gen, drop_while_t algorithm) -> Generator
+    auto operator()(Generator gen) -> Generator
     {
         bool drop = true;
 
         for (auto&& item : gen)
         {
             if (drop)
-                if (drop = algorithm.pred(item))
+                if (drop = pred(item))
                     continue;
 
             co_yield item;

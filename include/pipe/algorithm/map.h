@@ -11,10 +11,10 @@ struct map_t
     UnaryOperation op;
 
     template <template <typename, typename> typename Generator, typename T, typename Allocator>
-    static auto apply(Generator<T, Allocator> gen, map_t algorithm) -> Generator<typename std::result_of<UnaryOperation(T&)>::type, Allocator>
+    auto operator()(Generator<T, Allocator> gen) -> Generator<typename std::result_of<UnaryOperation(T&)>::type, Allocator>
     {
         for (auto&& item : gen)
-            co_yield algorithm.op(item);
+            co_yield op(item);
     }
 };
 

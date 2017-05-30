@@ -11,10 +11,10 @@ struct all_t
     Predicate pred;
 
     template <typename Generator>
-    static auto apply(Generator gen, all_t algorithm)
+    auto operator()(Generator gen)
     {
         for (auto&& item : gen)
-            if (!algorithm.pred(item))
+            if (!pred(item))
                 return false;
 
         return true;
@@ -27,9 +27,9 @@ struct some_t
     Predicate pred;
 
     template <typename Generator>
-    static auto apply(Generator gen, some_t algorithm)
+    auto operator()(Generator gen)
     {
-        return !(gen | none(algorithm.pred));
+        return !(gen | none(pred));
     }
 };
 

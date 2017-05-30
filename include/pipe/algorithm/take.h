@@ -11,10 +11,10 @@ struct take_while_t
     Predicate pred;
 
     template <typename Generator>
-    static auto apply(Generator gen, take_while_t algorithm) -> Generator
+    auto operator()(Generator gen) -> Generator
     {
         for (auto&& item : gen)
-            if (algorithm.pred(item))
+            if (pred(item))
                 co_yield item;
             else
                 return;
